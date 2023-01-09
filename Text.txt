@@ -1,1 +1,13 @@
 코딩테스트 공부 - JAVA 활용
+데이터 타입
+정수형
+	byte	1byte/8bit 	-2^7 ~ (2^7 - 1)
+	char	2byte/16bit	0 ~ (2^16 - 1), 유니코드
+	short	2byte/16bit	-2^15 ~ (2^15 - 1)
+	int	4byte/32bit	-2^31 ~ (2^31 - 1)
+	long	8byte/64bit	-2^63 ~ (2^63 - 1)
+실수형
+	float	4byte/32bit	(+/-)1.4E-45 ~ (+/-)3.4028235E38
+	double 	8byte/64bit	(+/-)4.9E-324 ~ (+/-)1.7976931348623157E308
+논리형
+	boolean	1byte/8bit	true, false
