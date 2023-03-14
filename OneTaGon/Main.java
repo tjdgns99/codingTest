@@ -98,7 +98,7 @@ public class Main {
     }
 }
 */
-import java.util.ArrayList;
+
 import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
@@ -119,69 +119,109 @@ public class Main{
             for (int i = 0; i < n; i++) {
                 enemy2[i] = scan.nextInt();
             }
+            int charge = 0;
             int count = 0;
-            ArrayList<couple> couples = new ArrayList<couple>();
+            int two = 0;
+            int m = 0;
 
-            for(int i = 0; i < n; i++) {
-                if(i==0) {
-                    if (enemy1[i] + enemy1[i + 1] <= 100) {
-                        couples.add(new couple(i, i + 1, enemy1[i] + enemy1[i + 1]));
+            while (charge < (n * 2)) {
+                for (int i = 0; i < n; i++) {
+                    if (enemy1[i] < w) {
+                        charge += 1;
+                        count += 1;
+                        two = w - enemy1[i];
+                        enemy1[i] += w;
+
+                        if (i == 0){
+                            if(two - enemy1[n-1] == m){
+                                charge += 1;
+                                enemy1[n-1] += w;
+                            }else if(two - enemy1[i+1] == m){
+                                charge += 1;
+                                enemy1[i+1] += 1;
+                            }else if(two - enemy2[i] == m){
+                                charge += 1;
+                                enemy2[i] += w;
+                            }
+                        }else if(i == n-1){
+                            if(two - enemy1[0] == m){
+                                charge += 1;
+                                enemy1[0] += w;
+                            }else if(two - enemy1[i-1] == m){
+                                charge += 1;
+                                enemy1[i-1] += w;
+                            }else if(two - enemy2[i] == m){
+                                charge += 1;
+                                enemy2[i] += w;
+                            }
+                        }else {
+                            if(two - enemy1[i-1] == m){
+                                charge += 1;
+                                enemy1[i-1] += w;
+                            }else if(two -enemy1[i+1] == m){
+                                charge += 1;
+                                enemy1[i+1] += w;
+                            }else if(two -enemy2[i] == m){
+                                charge += 1;
+                                enemy2[i] += w;
+                            }
+                        }
                     }
 
-                    if (enemy1[i] + enemy1[n - 1] <= 100) {
-                        couples.add(new couple(i, n - 1, enemy1[i] + enemy1[n - 1]));
-                    }
+                    if (enemy2[i] < w) {
+                        charge += 1;
+                        count += 1;
+                        two = w - enemy2[i];
+                        enemy2[i] += w;
 
-                    if (enemy1[i] + enemy2[i] <= 100){
-                        couples.add(new couple(i, i+n, enemy1[i] + enemy2[i]));
+                        if (i == 0){
+                            if(two - enemy2[n-1] == m){
+                                charge += 1;
+                                enemy2[n-1] += w;
+                            }else if(two - enemy2[i+1] == m){
+                                charge += 1;
+                                enemy2[i+1] += 1;
+                            }else if(two - enemy1[i] == m){
+                                charge += 1;
+                                enemy1[i] += w;
+                            }
+                        }else if(i == n-1){
+                            if(two - enemy2[0] == m){
+                                charge += 1;
+                                enemy2[0] += w;
+                            }else if(two - enemy2[i-1] == m){
+                                charge += 1;
+                                enemy2[i-1] += w;
+                            }else if(two - enemy1[i] == m){
+                                charge += 1;
+                                enemy1[i] += w;
+                            }
+                        }else {
+                            if(two - enemy2[i-1] == m){
+                                charge += 1;
+                                enemy2[i-1] += w;
+                            }else if(two -enemy2[i+1] == m){
+                                charge += 1;
+                                enemy2[i+1] += w;
+                            }else if(two -enemy1[i] == m){
+                                charge += 1;
+                                enemy1[i] += w;
+                            }
+                        }
                     }
-                } else if (i == n-1) {
-                    if (enemy1[i] + enemy2[i] <= 100){
-                        couples.add(new couple(i, i+n, enemy1[i] + enemy2[i]));
-                    }
-                }else{
-                    if (enemy1[i] + enemy1[i+1] <= 100) {
-                        couples.add(new couple(i, i+1, enemy1[i] + enemy1[i+1]));
-                    }
-
-                    if (enemy1[i] + enemy2[i] <= 100){
-                        couples.add(new couple(i, i+n, enemy1[i] + enemy2[i]));
-                    }
+                    System.out.println(count + "|||" + charge);
                 }
+
+                m += 1;
+
             }
 
-            for(int i = 0; i < n; i++){
-                if(i==0){
-                    if (enemy2[i] + enemy2[i + 1] <= 100) {
-                        couples.add(new couple(i, i + 1, enemy2[i] + enemy2[i + 1]));
-                    }
-
-                    if (enemy2[i] + enemy2[n - 1] <= 100) {
-                        couples.add(new couple(i, n - 1, enemy2[i] + enemy2[n - 1]));
-                    }
-                }else if(i < n-1){
-                    if (enemy2[i] + enemy2[i + 1] <= 100) {
-                        couples.add(new couple(i, i + 1, enemy2[i] + enemy2[i + 1]));
-                    }
-                }
-            }
 
 
 
 
 
-
-        System.out.println(count);
-        }
-    }
-    public static class couple{
-        int one;
-        int two;
-        int sum;
-        public couple(int one, int two, int sum){
-            this.one = one;
-            this.two = two;
-            this.sum = sum;
+            System.out.println(count);
         }
     }
 }
