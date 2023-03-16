@@ -11,3 +11,92 @@
 	double 	8byte/64bit	(+/-)4.9E-324 ~ (+/-)1.7976931348623157E308
 논리형
 	boolean	1byte/8bit	true, false
+
+기존의 System.in, System.out 보다 시간적으로 이득인 BufferedReader, BufferedWriter 사용법
+1. import 추가 필요(import java.io.*; 		//이거로 해도 될듯)
+	import java.io.BufferedReader;
+	import java.io.BufferedWriter;
+	import java.io.InputStreamReader;
+	import java.io.OutputStreamWriter;
+	import java.io.IOException;		//예외처리를 위해 필요
+
+2. main 클래스 옆에 throws IOException작성
+	public static void main(String[] args) throws IOException{}
+
+3. readLine() 사용 시 리턴 값은 String형으로 고정되므로 다른 타입으로 받을 경우 형 변환 필수
+	BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+	String s = bf.readLine();
+	Int i = Integer.parseInt(bf.readLine());
+	Double d = Double.parseDouble(bf.readLine());
+	Float f = Float.parseFloat(bf.readLine());
+
+4. Read한 데이터는 Line 단위로만 나눠지므로 공백 단위로 데이터를 가공하려면 추가작업 필요
+	1. StringTokenizer에 NextToken()함수 사용 시 공백 단위로 구분하여 순서대로 호출 가능
+		StringTokenizer st = new StringTokenizer(bf.readLine());
+		int a = Integer.parseInt(st.NextToken());
+		int b = Integer.parseInt(st.NextToken());
+	
+	2. String.split()함수를 이용하여 배열을 공백 단위로 끊어서 사용 가능
+		String array[] = bf.readLine().split(" ");
+
+5. BufferedWriter 사용 후에는 반드시 flush()/close() 호출해서 처리해줘야한다.
+   자동 개행이 없으므로 개행 필요 시 반그시 \n으로 처리해서 사용해야한다.
+	BufferedWriter bw = new BufferedWriter(OutputStreamWriter(System.out));
+	String s = "abcdefg";
+	bw.write(s+"\n");
+	bw.flush();
+	bw.close();
+	사용
+
+문자열을 이어주는 StringBuilder 사용법
+1. 많은 문자열을 연결하는 경우 효율적인 코드를 위해서 사용한다.
+	StringBuilder stringbuilder = new StringBuilder();
+	stringbuilder.append("문자열 ".append("연결").append("\n");	//\n의 경우 개행문자도 추가 가능
+	String str = stringbuilder.toString();	//반드시 toString()을 해야한다.
+	bw.write(stringbuilder);
+
+배열을 정렬해주는 Arrays.sort() 사용법
+1. Arrays.sort()를 사용하면 쉽게 String과 int 타입의 배열을 정렬 가능하다. 
+   Arrays.sort()는 Comparable 구현에 의해 정렬된다.
+
+2. Comparable: 기본 정렬 기준을 구현하는데 사용
+   Comparator: 기본 정렬 기준 외 다른 기준으로 정렬하고자 할 때 사용
+
+3. Arrays.sort() 사용법, ArrayList로 선언된 배열의 경우 Collection.sort() 사용 가능
+	int 배열 정렬: 오름차순, 내림차순
+		int[] arr = {1, 26, 19, 54, 43, 67);
+		오름차순
+		Arrays.sort(arr);
+		내림차순
+		Arrays.sort(arr, Collections.reverseOrder());
+	int 배열: 부분 정렬, sort()의 인자로 처음 index와 마지막 index를 전달하여 범위 지정
+		Arrays.sort(arr, 0, 4); 
+	String 배열 정렬: 오름차순, 내림차순, int 배열 정렬과 동일한 방식
+		int[] arr = {"Apple", "Kiwi", "Orange", "Banana", "Watermelon", "Cherry"};
+		오름차순(사전 순)
+		Arrays.sort(arr);
+		내림차순(사전 반대 순)
+		Arrays.sort(arr, Collections.reverseOrder());
+	String 배열, 문자 길이 순서로 정렬
+		Arrays.sort(arr, new Comparator<String>() {
+			@override
+			public int compare(String s1, String s2) {
+				return s1.length() - s2.length();
+			}
+		});	
+	객체 배열 정렬
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
