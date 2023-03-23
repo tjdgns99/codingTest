@@ -86,9 +86,102 @@
 		});	
 	객체 배열 정렬
 
+JAVA
+1.
+int	VS	long
+long에서 자료형의 범위로 인한 오답을 피할 수 있음
 
+2.
+Scanner	VS	BufferedReader
+BufferedReader가 제한 시간 관련하여 유리
+Scanner sc = new Scanner(System.in);
+int a = sc.nextInt();
 
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+StringTokenizer st = new StringTokenizer(br.readLine());
+int a = Integer.parseInt(st.nextToken());
+BufferedReader 가 복잡하지만 빠르다.
 
+3.
+++i	VS	i++
+전위연산자	후위연산자
+
+4.Array
+오름차순 정렬	VS	내림차순 정렬
+오름차순
+int A[] = {5, 3, 2, 4, 1};
+Array.sort(A);
+1, 2, 3, 4, 5
+
+내림차순1
+Integer A[] = {5, 3, 2, 4, 1};
+Array.sort(A, Collections.reverseOrder());
+5, 4, 3, 2, 1
+Collections.reverseOrder()는 객체 형태에만 사용 가능
+그래서 배열 선언을 Integer로 선언
+
+내림차순2
+int A[] = (5, 3, 2, 4, 1};
+Integer[] tmp = Arrays.stream(A).boxed().toArray(Integer[]::new);
+Arrays.sort(tmp, Collections.reversOrder());
+5, 4, 3, 2, 1
+
+내림차순3
+int A[] = {-5, -3, -2, -4, -1};
+Arrays.sort(A);
+출력 시 -1곱해서 출력
+
+5.
+sort	VS	Comparable
+sort: 단일 기준
+Comparable: 정렬 기준 여러개
+Comparable, 데이터 정렬
+
+Class Score{
+	int english;
+	int math;
+
+	public Score(int english, int math) {
+		super();
+		this.eglish = english;
+		this.math = math;
+	}
+
+	@override
+	public String toString() {
+		return "Score [english=" + english + ", math=" + math + "]";
+	}
+}
+
+implement Comparable
+Class Score impements Comparable<Score>
+{
+	~~~~
+	~~~~
+
+	@override
+	public int compareTo(Score o) {
+		if(this.english != o.english){
+			return this.english - o.english;
+		}
+		return 0;
+	}
+}
+매개변수 데이터가 더 클 때 음수 리턴 -> 오름 차순
+		          양수 리턴 -> 내림 차순
+
+ArrayList<Score> A = new ArrayList<>();
+
+A.add(new Score(80, 100));
+~
+~
+~
+
+Collections.sort(A);
+
+for(int i = 0; i < A.size(); i++) {
+	System.out.println(A.get(i).toString());
+}
 
 
 
