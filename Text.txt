@@ -183,6 +183,37 @@ for(int i = 0; i < A.size(); i++) {
 	System.out.println(A.get(i).toString());
 }
 
+JAVA
+Stack 사용법, Push OR Pop
+Stack stack = new Stack();
+stack.empty(), stack.peek(), stack.pop(), stack.push()
+boolean empty(): Stack이 비어있는지 반환
+Object peek(): Stack의 맨 위에 있는 저장된 객체를 반환, 꺼내지는 않음
+Object pop(): Stack의 맨 위에 있는 저장된 객체를 꺼냄
+Object push(Object item): Stack에 객체를 저장
+int search(Object o): Stack에서 주어진 객체를 찾아서 그 위치를 반환(못찾으면 -1 반환), 위치는 1부터 시작함(위에서 부터)
+
+Queue(인터페이스) 사용법, Offer OR Poll, import java.util.*;필요
+Queue queue = new LinkedList();	-ArrayDeque();, 
+queue.offer()
+boolean add(Object o): 저장된 객체를 Queue에 추가
+Object remove(): Queue에서 객체를 꺼내 반환, 비어있으면 에러, try-catch
+Object element(): 삭제없이 요소를 읽음, 비어있으면 에러
+여기 세개 사용하는게 좋을 듯
+boolean offer(Object o): Queue에 객체를 저장, 성공하면 true, 실패하면 false
+Object poll(): Queue에서 객체를 꺼내서 반환, 비어있으면 null 반환
+Object peek(): 삭제없이 요소를 읽음, 비어있으면 null 반환
+
+
+
+
+
+
+
+
+
+
+
 
 
 
